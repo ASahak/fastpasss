@@ -1,0 +1,68 @@
+{
+  "name": "fastpass",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "pre-commit": "lint-stage d",
+    "lint:fix": "eslint ./src --fix --quiet",
+    "formatter:fix": "prettier --write ./**/*.{js,jsx,ts,tsx,css,json} --config ./.prettierrc",
+    "prepare": "husky",
+    "postinstall": "typechain --target=ethers-v6 --always-generate-overloads --out-dir ./src/abis './src/services/abi/*.json' && npm run wagmi:generate",
+    "typechain": "typechain --target=ethers-v6 --always-generate-overloads --out-dir ./src/abis './src/services/abi/*.json'",
+    "wagmi:generate": "wagmi generate --config wagmi.generate.ts"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run formatter:fix"
+    ]
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.2.4",
+    "@chakra-ui/next-js": "^2.4.2",
+    "@chakra-ui/react": "^2.10.9",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@tanstack/react-query": "~5.61.0",
+    "@tanstack/react-query-devtools": "~5.69.0",
+    "@wagmi/chains": "^1.8.0",
+    "@wagmi/cli": "^2.3.1",
+    "@wagmi/connectors": "^5.8.3",
+    "@wagmi/core": "^2.17.2",
+    "@walletconnect/utils": "^2.20.3",
+    "bignumber.js": "^9.3.1",
+    "@typechain/ethers-v6": "~0.5.1",
+    "dayjs": "^1.11.13",
+    "ethers": "~6.13.4",
+    "framer-motion": "^12.23.6",
+    "immer": "^10.1.1",
+    "next": "15.4.1",
+    "react": "19.1.0",
+    "react-device-detect": "^2.2.3",
+    "react-dom": "19.1.0",
+    "react-icons": "^5.5.0",
+    "react-remove-scroll": "^2.7.1",
+    "react-skeleton-builder": "^0.6.3",
+    "viem": "^2.30.0",
+    "typechain": "~8.3.2",
+    "wagmi": "^2.15.4",
+    "zustand": "^5.0.6"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.1",
+    "eslint-config-prettier": "^10.1.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.6.2",
+    "typescript": "^5"
+  }
+}
