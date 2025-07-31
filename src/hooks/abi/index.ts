@@ -1,0 +1,1 @@
+export { useEventABI } from './useEventABI'
