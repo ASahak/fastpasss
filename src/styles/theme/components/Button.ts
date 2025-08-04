@@ -59,8 +59,7 @@ export default defineStyleConfig({
       _disabled: {
         opacity: 1,
         bg: 'var(--chakra-colors-magenta-800) !important',
-        color:
-          'white !important'
+        color: 'white !important'
       }
     },
     connect: {
@@ -127,10 +126,42 @@ export default defineStyleConfig({
         bgColor: 'gray.800',
         borderColor: 'gray.400',
         _hover: {
-          borderColor: 'gray.400',
+          borderColor: 'gray.400'
+        }
+      }
+    },
+    'magenta-secondary': {
+      fontFamily: 'Montserrat, sans-serif',
+      fontWeight: '500',
+      color: 'white',
+      // bgColor: 'gray.700',
+      border: '1px solid',
+      borderColor: 'var(--chakra-colors-magenta-400)',
+      rounded: '2.4rem',
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      fontSize: '1.4rem',
+      _hover: {
+        bgColor: 'gray.800',
+        borderColor: 'var(--chakra-colors-magenta-350)'
+      },
+      _active: {
+        bgColor: 'gray.800',
+        borderColor: 'gray.400',
+        _hover: {
+          borderColor: 'gray.400'
         }
       },
-    },
+      _focus: {
+        boxShadow: 'none',
+        bgColor: 'gray.800',
+        borderColor: 'gray.400',
+        _hover: {
+          borderColor: 'gray.400'
+        }
+      }
+    }
   },
   defaultProps: {
     size: 'md'

@@ -14,6 +14,7 @@ import {
 import { POPUP_TYPES } from '@/common/constants/popup'
 import { usePopup } from '@/providers/popupProvider'
 import Connect from './connect'
+import CheckinTicket from '@/components/popup/checkinTicket'
 
 const overlayColor = '#1717177a' // gray.800/50
 function Popup() {
@@ -34,6 +35,8 @@ function Popup() {
     switch (popupType) {
       case POPUP_TYPES.CONNECT_WALLET:
         return <Connect {...(popupData as any)} />
+      case POPUP_TYPES.CHECKIN_TICKET:
+        return <CheckinTicket {...(popupData as any)} />
       default:
         return <div>Unknown popup type</div>
     }
@@ -92,7 +95,14 @@ function Popup() {
             </ModalHeader>
           ) : null}
           {!popupSettings.hideCloseIcon && (
-            <ModalCloseButton fontSize="1rem" top="2.4rem" right="2.4rem" border="1px solid" rounded="full" p={2} />
+            <ModalCloseButton
+              fontSize="1rem"
+              top="2.8rem"
+              right="2.4rem"
+              border="1px solid"
+              rounded="full"
+              p={2}
+            />
           )}
           <ModalBody
             w="full"

@@ -1,15 +1,16 @@
-import { toBig } from '@/utils/helpers/bignumber';
-import { formatUnitValue } from '@/utils/helpers/global';
-import { IEvent } from '@/common/types/events';
+import { toBig } from '@/utils/helpers/bignumber'
+import { formatUnitValue } from '@/utils/helpers/global'
+import { IEvent } from '@/common/types/events'
+import { FTN_DECIMAL } from '@/common/constants/global'
 
 export const populateEventStruct = (data: any): IEvent => ({
-  contractAddress: data.contractAddress,
-  description: data._description,
-  event_id: toBig(data._eventId).toString(),
-  media_paths: data._media,
-  price: toBig(formatUnitValue(data._priceWei, 6/*todo*/)).toString(),
-  organization_name: data._org,
-  title: data._title,
-  placeName: data._place,
-  start_date: toBig(data._start).toString(),
+  contractAddress: data.contractAddr,
+  description: data.desc,
+  event_id: toBig(data.eid).toString(),
+  media_paths: data.media,
+  price: toBig(formatUnitValue(data.priceWei, FTN_DECIMAL)).toString(),
+  organization_name: data.org,
+  title: data.title,
+  placeName: data.place,
+  start_date: toBig(data.startStr).toString()
 })

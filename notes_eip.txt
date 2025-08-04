@@ -1,0 +1,32 @@
+// assume you already have: provider, signer, contract
+
+// 1. Values
+const tokenId = 42n;                       // picked from UI
+const eventId = await contract.eventId();  // uint256
+const nonce   = BigInt(Date.now());        // replay-safe
+
+// 2. Domain + Types
+const domain = {
+  name: "FastPassNFT", event's contract name
+  version: "1", constant
+  chainId: await signer.getChainId(),
+  verifyingContract: contract.target   event's contract addr     // ethers v6 .target === address
+};
+
+const types = {
+  Checkin: [
+    { name: "tokenId", type: "uint256" },
+    { name: "eventId", type: "uint256" },
+    { name: "nonce",   type: "uint256" }
+  ]
+};
+
+// 3. Sign
+const signature = await signer.signTypedData(domain, types, {
+  tokenId,
+  eventId,
+  nonce
+});
+
+// 4. Build QR payload
+const payload = { v: 2, tokenId, eventId, nonce, signature };
