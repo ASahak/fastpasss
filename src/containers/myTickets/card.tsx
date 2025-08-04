@@ -118,6 +118,7 @@ const CardTicket = ({ data }: { data: ITicket }) => {
           />
         )}
       </Box>
+
       <VStack w="full" spacing=".2rem" alignItems="flex-start">
         <Heading fontSize="1.6rem" color="white" w="full" noOfLines={2} mb={4}>
           {data.eventName}
