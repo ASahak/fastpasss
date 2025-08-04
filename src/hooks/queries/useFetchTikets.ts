@@ -7,13 +7,19 @@ import { IEvent } from '@/common/types/events'
 
 export const useFetchTickets = (
   eventsData: IEvent[] | undefined
-): UseQueryResult<{ tickets: ITicket[]; nextPageParams: any }> => {
+): UseQueryResult<{
+  activeTickets: ITicket[]
+  usedTickets: ITicket[]
+  expiredTickets: ITicket[]
+  nextPageParams: any
+}> => {
   const { address } = useAccount()
   const eventsAddressMap = {}
+  console.log('eventsData -> ', eventsData)
   eventsData?.forEach((event) => {
     eventsAddressMap[event.contractAddress] = {
       start_date: event.start_date,
-      place: event.placeName,
+      placeName: event.placeName,
       event_id: event.event_id
     }
   })
@@ -24,7 +30,8 @@ export const useFetchTickets = (
         `https://bck.ftnscan.com/api/v2/addresses/${address}/nft?type=ERC-721`
       )
       const ticketsData = await userNfts.json()
-      const tickets = []
+      const tickets: ITicket[] = []
+      console.log('ticketsData ->', ticketsData)
       ticketsData.items.forEach((ticketData) => {
         if (eventsAddressMap[ticketData.token.address]) {
           tickets.push(
@@ -35,7 +42,22 @@ export const useFetchTickets = (
           )
         }
       })
-      return { tickets, nextPageParams: ticketsData.next_page_params }
+      const usedTickets = []
+      const activeTickets = []
+
+      tickets.forEach((ticket) => {
+        if (ticket.checkedIn === 'true') {
+          usedTickets.push(ticket)
+        } else {
+          activeTickets.push(ticket)
+        }
+      })
+      console.log(' usedTickets - > ', usedTickets)
+      return {
+        activeTickets,
+        usedTickets,
+        nextPageParams: ticketsData.next_page_params
+      }
     },
     enabled: !!address && !!eventsData
   })

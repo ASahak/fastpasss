@@ -1,4 +1,5 @@
 export const BAHAMUT_CHAIN_ID = 5165
+
 export const HORIZON_CHAIN_ID = 2552
 
 export const API_REVALIDATION_BASE_TIME = 60 * 1_000

@@ -1,4 +1,4 @@
-import { memo, ReactNode } from 'react'
+import { memo, ReactNode, useState } from 'react'
 import { Flex, Grid, Heading, VStack } from '@chakra-ui/react'
 import Pagination from './pagination'
 import StatusFilters from './statusFilters'
@@ -6,12 +6,14 @@ import { useFetchTickets } from '@/hooks/queries/useFetchTikets'
 import { useFetchEvents } from '@/hooks/queries/useFetchEvents'
 import { Empty, Spinner } from '@/components/ui'
 import CardTicket from '@/containers/myTickets/card'
+import { TicketStatus } from '@/common/enums/ticket'
 
 const MyTickets = () => {
+  const [status, setStatus] = useState(TicketStatus.ACTIVE)
   const { data: eventsData } = useFetchEvents('')
   const { data, isLoading } = useFetchTickets(eventsData)
-  console.log('tickets  -> ', data?.tickets)
-
+  console.log('tickets  -> ', data?.activeTickets)
+  console.log(' status= > ', status)
   if (isLoading)
     return (
       <Flex justifyContent="center" alignItems="center" w="full" h="full">
@@ -23,11 +25,15 @@ const MyTickets = () => {
         />
       </Flex>
     )
-
-  if (!data) return <Empty />
+  const ticketsData =
+    status === TicketStatus.ACTIVE
+      ? data?.activeTickets
+      : status === TicketStatus.USED
+        ? data?.usedTickets
+        : data?.expiredTickets
 
   return (
-    <VStack spacing="1.8rem" pb="2.4rem" w="full">
+    <VStack spacing="1.8rem" pb="2.4rem" w="full" h="full">
       <Flex justifyContent="space-between" w="full">
         <Heading fontSize="2.4rem" color="white">
           My Tickets
@@ -35,22 +41,26 @@ const MyTickets = () => {
         {/*<Pagination maxPages={ 3 }/>*/}
       </Flex>
       <Flex w="full">
-        <StatusFilters />
+        <StatusFilters status={status} setStatus={setStatus} />
       </Flex>
-      <Grid
-        w="full"
-        templateColumns={{
-          lg: 'repeat(2, 1fr)',
-          xl: 'repeat(3, 1fr)',
-          base: 'repeat(1, 1fr)'
-        }}
-        gap={4}
-      >
-        {data?.tickets.map(
-          (ticket) =>
-            (<CardTicket key={ticket.id} data={ticket} />) as ReactNode
-        )}
-      </Grid>
+      {!ticketsData?.length
+        ? ((<Empty />) as ReactNode)
+        : ((
+            <Grid
+              w="full"
+              templateColumns={{
+                lg: 'repeat(2, 1fr)',
+                xl: 'repeat(3, 1fr)',
+                base: 'repeat(1, 1fr)'
+              }}
+              gap={4}
+            >
+              {data?.activeTickets.map(
+                (ticket) =>
+                  (<CardTicket key={ticket.id} data={ticket} />) as ReactNode
+              )}
+            </Grid>
+          ) as ReactNode)}
     </VStack>
   )
 }

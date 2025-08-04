@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react'
+import { memo, ReactNode, useEffect } from 'react'
 import dayjs from 'dayjs'
 import { Heading, Box, VStack, Text, Button, Flex } from '@chakra-ui/react'
 import { useSignTypedData } from 'wagmi'
@@ -21,9 +21,8 @@ const CardTicket = ({ data }: { data: ITicket }) => {
     signTypedData
   } = useSignTypedData()
 
-  console.log('data - > ', data)
+  const isCheckedId = data.checkedIn === 'true'
 
-  // EIP-712 Domain for signTypedData
   const domain = {
     name: 'FastPassNFT',
     version: '1',
@@ -31,7 +30,6 @@ const CardTicket = ({ data }: { data: ITicket }) => {
     verifyingContract: data.eventAddress
   }
 
-  // The types for the data structure you want to sign
   const types = {
     Checkin: [
       { name: 'tokenId', type: 'uint256' },
@@ -40,7 +38,6 @@ const CardTicket = ({ data }: { data: ITicket }) => {
     ]
   }
 
-  // The actual data to sign
   const messageToSign = {
     tokenId: toBig(data.id),
     eventId: toBig(data.eventId),
@@ -117,16 +114,49 @@ const CardTicket = ({ data }: { data: ITicket }) => {
             }}
           />
         )}
+
+        <Text
+          fontSize="1.2rem"
+          color="white"
+          justifyContent="space-between"
+          position="absolute"
+          bottom=".6rem"
+          left=".6rem"
+          rounded=".6rem"
+          bg="#2f2f2fe6"
+          p=".5rem .8rem"
+        >
+          {dayjs(data.eventDate).format('ddd, MMM D • h:mm A')}
+        </Text>
       </Box>
 
       <VStack w="full" spacing=".2rem" alignItems="flex-start">
-        <Heading fontSize="1.6rem" color="white" w="full" noOfLines={2} mb={4}>
-          {data.eventName}
-        </Heading>
-        <Text fontSize="1.4rem" color="gray.300" w="full">
-          {dayjs(data.eventDate).format('ddd, MMM D • h:mm A')}
-        </Text>
-        <Text fontSize="1.4rem" color="gray.300" w="full" noOfLines={1}>
+        <Flex justifyContent="space-between" alignItems="center" w="full">
+          <Heading
+            fontSize="1.6rem"
+            color="white"
+            w="full"
+            noOfLines={2}
+            mb={4}
+          >
+            {data.eventName}
+          </Heading>
+          <Text
+            bg={isCheckedId ? 'red.300' : 'green.300'}
+            rounded="1.6rem"
+            fontSize="1.4rem"
+            p=".15rem .6rem"
+          >
+            {isCheckedId ? 'Used' : 'Active'}
+          </Text>
+        </Flex>
+        <Text
+          fontSize="1.4rem"
+          color="gray.300"
+          w="full"
+          noOfLines={1}
+          mb="1rem"
+        >
           {data.eventPlaceName}
         </Text>
         <Flex gap="1rem">
@@ -140,17 +170,20 @@ const CardTicket = ({ data }: { data: ITicket }) => {
           >
             View on Ftnscan
           </Button>
-          <Button
-            variant="magenta-secondary"
-            target="_blank"
-            lineHeight="1rem"
-            minW="12rem"
-            fontSize="1.2rem"
-            justifyContent="center"
-            onClick={openQRPopup}
-          >
-            Check-in
-          </Button>
+          {!isCheckedId &&
+            ((
+              <Button
+                variant="magenta-secondary"
+                target="_blank"
+                lineHeight="1rem"
+                minW="12rem"
+                fontSize="1.2rem"
+                justifyContent="center"
+                onClick={openQRPopup}
+              >
+                Check-in
+              </Button>
+            ) as ReactNode)}
         </Flex>
       </VStack>
     </VStack>
