@@ -1,5 +1,5 @@
 import { Connector } from 'wagmi'
-import { AddressType } from '@/common/types/global';
+import { AddressType } from '@/common/types/global'
 
 export type IConnector = Connector & {
   name: string

@@ -1,5 +1,4 @@
-import { providers } from 'ethers';
-
+import { providers } from 'ethers'
 
 declare global {
   interface Window {
@@ -10,6 +9,6 @@ declare global {
       address: string
       themeMode: 'dark' | 'light'
     }
-    ethereum?: providers.EIP1193Provider;
+    ethereum?: providers.EIP1193Provider
   }
 }

@@ -1,14 +1,14 @@
 'use client'
 
-import { memo, useState } from 'react';
-import { Flex, Icon, Button } from '@chakra-ui/react';
-import { RxChevronLeft, RxChevronRight } from "react-icons/rx";
+import { memo, useState } from 'react'
+import { Flex, Icon, Button } from '@chakra-ui/react'
+import { RxChevronLeft, RxChevronRight } from 'react-icons/rx'
 
 type IProps = {
-  maxPages: number;
+  maxPages: number
 }
 const Pagination = ({ maxPages }: IProps) => {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1)
 
   return (
     <Flex
@@ -23,15 +23,30 @@ const Pagination = ({ maxPages }: IProps) => {
       alignItems="center"
       justifyContent="center"
     >
-      <Button variant="unstyled" w="2rem" fontSize="2.2rem" h="2rem" display="flex" justifyContent="center"
-              alignItems="center">
-        <Icon as={RxChevronLeft}/>
+      <Button
+        variant="unstyled"
+        w="2rem"
+        fontSize="2.2rem"
+        h="2rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Icon as={RxChevronLeft} />
       </Button>
       {page} of {maxPages}
-      <Button variant="unstyled" w="2rem" h="2rem" fontSize="2.2rem" display="flex" justifyContent="center"
-              alignItems="center">
-        <Icon as={RxChevronRight}/>
+      <Button
+        variant="unstyled"
+        w="2rem"
+        h="2rem"
+        fontSize="2.2rem"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Icon as={RxChevronRight} />
       </Button>
-    </Flex>)
+    </Flex>
+  )
 }
-export default memo(Pagination);
+export default memo(Pagination)

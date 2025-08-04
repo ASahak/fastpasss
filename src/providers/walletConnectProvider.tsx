@@ -23,11 +23,7 @@ import { useToast } from '@chakra-ui/react'
 import { StorageUtil } from '@reown/appkit-controllers/utils'
 import { useQueryClient } from '@tanstack/react-query'
 
-import {
-  ErrorCodes,
-  Errors,
-  METAMASK_ERRORS,
-} from '@/common/constants/errors'
+import { ErrorCodes, Errors, METAMASK_ERRORS } from '@/common/constants/errors'
 import {
   BAHAMUT_CHAIN_ID,
   METAMASK_DOWNLOAD_URL,
@@ -35,17 +31,11 @@ import {
 } from '@/common/constants/global'
 import { ConnectStatus } from '@/common/enums/connect'
 import { ConnectChangeEvent } from '@/common/types/connect'
-import {
-  useLiveStates,
-  useWallets
-} from '@/hooks'
+import { useLiveStates, useWallets } from '@/hooks'
 import { getDAppUrl, userRejectedTx } from '@/utils/helpers/global'
 import { isMetaMaskAvailable } from '@/utils/helpers/connect'
 import { errorToUserReadable } from '@/utils/helpers/errors'
-import {
-  deleteQueryCaches,
-  reFetchQueryCalls
-} from '@/utils/helpers/query'
+import { deleteQueryCaches, reFetchQueryCalls } from '@/utils/helpers/query'
 
 export interface WalletConnectContextType {
   providerName: string
@@ -53,9 +43,7 @@ export interface WalletConnectContextType {
   disconnect: () => Promise<void>
   setIsBahamutNetwork: (isBahamut: boolean) => void
   isBahamutNetwork: boolean
-  connectWithEVMWallet: (
-    connector: Connector,
-  ) => Promise<void>
+  connectWithEVMWallet: (connector: Connector) => Promise<void>
   addOrSwitchBahamutToMetamask: () => Promise<void>
 }
 
@@ -91,7 +79,7 @@ export const WalletConnectProvider = ({
   const { disconnectAsync: disconnectWagmi } = useDisconnect()
   const liveStates = useLiveStates({
     address: address,
-    wallets,
+    wallets
   })
 
   const toast = useToast()
@@ -151,9 +139,7 @@ export const WalletConnectProvider = ({
     await switchChainAsync({ chainId: BAHAMUT_CHAIN_ID })
   }
 
-  const connectWithEVMWallet = async (
-    connector: Connector,
-  ) => {
+  const connectWithEVMWallet = async (connector: Connector) => {
     try {
       setConnectStatus(ConnectStatus.STARTED)
       await disconnect(connector)
@@ -169,19 +155,18 @@ export const WalletConnectProvider = ({
     } catch (error: any) {
       console.log(error)
       if (userRejectedTx(error)) {
-          toast({
-            title: METAMASK_ERRORS.userRejectedRequest.message,
-            status: 'error'
-          })
-        } else {
-          await disconnect(connector)
-          const errorMessage = errorToUserReadable(error)
-          toast({
-            status: 'error',
-            title: errorMessage
-          })
-        }
-
+        toast({
+          title: METAMASK_ERRORS.userRejectedRequest.message,
+          status: 'error'
+        })
+      } else {
+        await disconnect(connector)
+        const errorMessage = errorToUserReadable(error)
+        toast({
+          status: 'error',
+          title: errorMessage
+        })
+      }
     } finally {
       setConnectStatus(ConnectStatus.FINISHED)
     }
@@ -253,7 +238,7 @@ export const WalletConnectProvider = ({
         setIsBahamutNetwork,
         disconnect,
         connectWithEVMWallet,
-        addOrSwitchBahamutToMetamask,
+        addOrSwitchBahamutToMetamask
       }}
     >
       {children}

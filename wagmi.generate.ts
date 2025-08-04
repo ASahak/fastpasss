@@ -1,13 +1,10 @@
 import { defineConfig } from '@wagmi/cli'
 import { actions, react } from '@wagmi/cli/plugins'
 
-import {
-  Arevod__factory
-} from './src/abis'
+import { Arevod__factory } from './src/abis'
 
 const capitalize = (s: string) =>
   String(s[0]).toUpperCase() + String(s).slice(1)
-
 
 const contracts = [
   {

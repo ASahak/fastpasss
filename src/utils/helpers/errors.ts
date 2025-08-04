@@ -1,15 +1,12 @@
-import {
-  CUSTOM_MESSAGES,
-  METAMASK_ERRORS,
-} from '@/common/constants/errors'
+import { CUSTOM_MESSAGES, METAMASK_ERRORS } from '@/common/constants/errors'
 import { CustomErrorType } from '@/common/types/global'
 
 export const getErrorMessageFromConnector = (
   error: CustomErrorType
 ): string | undefined => {
   const { code, message } = error
-  let result: string | undefined = (
-    Object.values(METAMASK_ERRORS).find(({ code: _code }) => code === _code)
+  let result: string | undefined = Object.values(METAMASK_ERRORS).find(
+    ({ code: _code }) => code === _code
   )?.message
 
   if (!result && message) {

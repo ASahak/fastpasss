@@ -1,8 +1,8 @@
 'use client'
 
-import dynamic from 'next/dynamic';
-import { VStack } from '@chakra-ui/react';
-import { AuthGuard } from '@/components/features';
+import dynamic from 'next/dynamic'
+import { VStack } from '@chakra-ui/react'
+import { AuthGuard } from '@/components/features'
 
 // const FilterTags = dynamic(() => import('@/containers/events/filterTags').then(m => m.default), {
 //   loading: () => <Skeleton
@@ -17,12 +17,14 @@ import { AuthGuard } from '@/components/features';
 //   ssr: true,
 // }); /*todo temp hide*/
 
-const MyTickets = dynamic(() => import('@/containers/myTickets').then(m => m.default), {
-  ssr: true,
-});
+const MyTickets = dynamic(
+  () => import('@/containers/myTickets').then((m) => m.default),
+  {
+    ssr: true
+  }
+)
 
 export default function Page() {
-
   return (
     <VStack spacing={0} h="full" w="full">
       {/*<FilterTags/>*/}
@@ -30,5 +32,5 @@ export default function Page() {
         <MyTickets />
       </AuthGuard>
     </VStack>
-  );
+  )
 }

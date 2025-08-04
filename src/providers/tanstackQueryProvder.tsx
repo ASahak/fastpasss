@@ -1,9 +1,9 @@
-"use client";
+'use client'
 
 import { PropsWithChildren } from 'react'
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { API_REVALIDATION_BASE_TIME } from '@/common/constants/global';
+import { API_REVALIDATION_BASE_TIME } from '@/common/constants/global'
 
 const queryClient = new QueryClient({
   defaultOptions: {

@@ -3,7 +3,7 @@ import {
   type IAddressRegistryABI,
   AddressRegistryService
 } from '@/services/abiService'
-import { ADDRESS_REGISTRY } from '@/common/constants/events';
+import { ADDRESS_REGISTRY } from '@/common/constants/events'
 
 export const useAddressRegistry = () => {
   const readAddressRegistry = async (contractProps: ContractProps) => {

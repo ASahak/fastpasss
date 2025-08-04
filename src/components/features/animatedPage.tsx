@@ -1,8 +1,8 @@
-'use client';
+'use client'
 
-import { usePathname } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Box, Flex } from '@chakra-ui/react';
+import { usePathname } from 'next/navigation'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Box, Flex } from '@chakra-ui/react'
 
 const variants = {
   initial: { opacity: 0, x: 0, y: -5, zIndex: 2 },
@@ -12,8 +12,12 @@ const pageTransition = {
   ease: 'linear',
   duration: 0.2
 }
-export default function AnimatedPage({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
+export default function AnimatedPage({
+  children
+}: {
+  children: React.ReactNode
+}) {
+  const pathname = usePathname()
 
   return (
     <AnimatePresence mode="wait">
@@ -28,7 +32,7 @@ export default function AnimatedPage({ children }: { children: React.ReactNode }
           width: '100%',
           minHeight: '100%',
           display: 'flex',
-          overflowX: "hidden"
+          overflowX: 'hidden'
         }}
       >
         <Flex flex={1} w="full">
@@ -36,5 +40,5 @@ export default function AnimatedPage({ children }: { children: React.ReactNode }
         </Flex>
       </motion.div>
     </AnimatePresence>
-  );
+  )
 }

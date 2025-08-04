@@ -47,11 +47,11 @@ export const METAMASK_ERRORS = (() => {
 
 export const CUSTOM_MESSAGES = {
   UNKNOWN_ERROR: 'Something went wrong!',
-  [ErrorCodes.UNRECOGNIZED_CHAIN_ERROR_CODE]: 'Network not found!',
+  [ErrorCodes.UNRECOGNIZED_CHAIN_ERROR_CODE]: 'Network not found!'
 } as const
 
 if (typeof window !== 'undefined') {
-  (window as any).CONNECTION_ERRORS = {
+  ;(window as any).CONNECTION_ERRORS = {
     METAMASK_ERRORS
   }
 }

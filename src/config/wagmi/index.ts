@@ -10,15 +10,14 @@ import {
 } from 'wagmi'
 import { bahamut } from 'viem/chains'
 import { injected, metaMask } from 'wagmi/connectors'
-import { isClient } from '@/utils/helpers/global';
-
+import { isClient } from '@/utils/helpers/global'
 
 export const bahamutChain = {
   ...bahamut,
   hexId: '0x142d',
   api: {
     blockchainServiceProvider: 'Sahara'
-  },
+  }
 } as const
 
 export const horizonChain = {
@@ -28,24 +27,21 @@ export const horizonChain = {
   nativeCurrency: { name: 'Fasttoken', symbol: 'FTN', decimals: 18 },
   rpcUrls: {
     default: {
-      http: [
-        'https://rpc1-horizon.bahamut.io',
-      ],
-      webSocket: [
-      ],
-    },
+      http: ['https://rpc1-horizon.bahamut.io'],
+      webSocket: []
+    }
   },
   blockExplorers: {
     default: {
       name: 'Ftnscan',
       url: 'https://www.horizon.ftnscan.com',
-      apiUrl: 'https://www.dep.horizon.ftnscan.com/api',
-    },
+      apiUrl: 'https://www.dep.horizon.ftnscan.com/api'
+    }
   },
   hexId: '0x9f8',
   api: {
     blockchainServiceProvider: 'Sahara'
-  },
+  }
 } as const
 
 const transports = {

@@ -2,7 +2,7 @@ export default {
   global: (props: any) => ({
     ':root': {
       '--header-height': '6rem',
-      '--sidebar-width': '24.8rem',
+      '--sidebar-width': '24.8rem'
     },
     html: {
       fontSize: '10px',
@@ -14,14 +14,14 @@ export default {
     'body *': {
       fontFamily: '"Montserrat", sans-serif',
       margin: '0',
-      boxSizing: 'border-box',
+      boxSizing: 'border-box'
     },
     body: {
       background: 'gray.900',
       height: '100dvh',
       overflow: 'hidden',
       display: 'flex',
-      flexDirection: 'column',
+      flexDirection: 'column'
     },
     '#chakra-toast-manager-top-right': {
       top: '6rem !important'

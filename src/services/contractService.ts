@@ -5,10 +5,7 @@ import { encodeFunctionData } from 'viem'
 import { getConnectorClient, type GetPublicClientReturnType } from '@wagmi/core'
 import { getPublicClient, readContract, writeContract } from '@wagmi/core'
 
-import type {
-  AddressType,
-  IAddress,
-} from '@/common/types/global'
+import type { AddressType, IAddress } from '@/common/types/global'
 import type {
   UseReadContractProps,
   UseWriteContractProps
