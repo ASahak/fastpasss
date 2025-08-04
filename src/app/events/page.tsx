@@ -1,9 +1,9 @@
 'use client'
 
-import dynamic from 'next/dynamic';
-import { VStack } from '@chakra-ui/react';
-import { useEventsStore } from '@/store/events';
-import { useFetchEvents } from '@/hooks/queries/useFetchEvents';
+import dynamic from 'next/dynamic'
+import { VStack } from '@chakra-ui/react'
+import { useEventsStore } from '@/store/events'
+import { useFetchEvents } from '@/hooks/queries/useFetchEvents'
 
 // const FilterTags = dynamic(() => import('@/containers/events/filterTags').then(m => m.default), {
 //   loading: () => <Skeleton
@@ -18,12 +18,15 @@ import { useFetchEvents } from '@/hooks/queries/useFetchEvents';
 //   ssr: true,
 // }); /*todo temp hide*/
 
-const Events = dynamic(() => import('@/containers/events').then(m => m.default), {
-  ssr: true,
-});
+const Events = dynamic(
+  () => import('@/containers/events').then((m) => m.default),
+  {
+    ssr: true
+  }
+)
 
 export default function Page() {
-  const filterBy = useEventsStore(state => state.activeFilter)
+  const filterBy = useEventsStore((state) => state.activeFilter)
   const data = useFetchEvents(filterBy)
 
   return (
@@ -31,5 +34,5 @@ export default function Page() {
       {/*<FilterTags/>*/}
       <Events loading={data.isLoading} data={data.data} />
     </VStack>
-  );
+  )
 }

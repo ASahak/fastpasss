@@ -1,5 +1,5 @@
 import { memo, type ReactNode } from 'react'
-import { RxCheckCircled, RxInfoCircled, RxCrossCircled } from "react-icons/rx";
+import { RxCheckCircled, RxInfoCircled, RxCrossCircled } from 'react-icons/rx'
 import {
   Alert,
   AlertDescription,
@@ -18,37 +18,19 @@ const colorScheme = (
   switch (status) {
     case 'success':
       return {
-        icon: (
-          <Icon
-            as={RxCheckCircled}
-            fontSize="2.4rem"
-            color="green.700"
-          />
-        ),
+        icon: <Icon as={RxCheckCircled} fontSize="2.4rem" color="green.700" />,
         bgColor: isDark ? '#1B3830' : '#CFECE2',
         color: isDark ? 'white' : 'black'
       }
     case 'info':
       return {
-        icon: (
-          <Icon
-            as={RxInfoCircled}
-            fontSize="2.4rem"
-            color="blue.300"
-          />
-        ),
+        icon: <Icon as={RxInfoCircled} fontSize="2.4rem" color="blue.300" />,
         bgColor: isDark ? '#253046' : '#D3DFFA',
         color: isDark ? 'white' : 'black'
       }
     case 'error':
       return {
-        icon: (
-          <Icon
-            as={RxCrossCircled}
-            fontSize="2.4rem"
-            color="red.700"
-          />
-        ),
+        icon: <Icon as={RxCrossCircled} fontSize="2.4rem" color="red.700" />,
         bgColor: isDark ? '#41292A' : '#F1DBDB',
         color: isDark ? 'white' : 'black'
       }
@@ -64,10 +46,7 @@ const colorScheme = (
 export const Toast = memo((props: UseToastOptions) => {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
-  const { bgColor, color, icon } = colorScheme(
-    props.status as string,
-    isDark
-  )
+  const { bgColor, color, icon } = colorScheme(props.status as string, isDark)
   return (
     <Alert
       borderRadius="1.2rem"
@@ -77,11 +56,7 @@ export const Toast = memo((props: UseToastOptions) => {
       fontSize="1.4rem"
     >
       {icon ? (
-        <AlertIcon
-          boxSize="2.6rem"
-          display="flex"
-          alignItems="center"
-        >
+        <AlertIcon boxSize="2.6rem" display="flex" alignItems="center">
           {icon}
         </AlertIcon>
       ) : null}

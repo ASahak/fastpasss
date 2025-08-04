@@ -1,4 +1,4 @@
-import { VStack, Text } from '@chakra-ui/react';
+import { VStack, Text } from '@chakra-ui/react'
 
 export const Empty = () => {
   return (
@@ -30,5 +30,5 @@ export const Empty = () => {
         No Data
       </Text>
     </VStack>
-  );
-};
+  )
+}

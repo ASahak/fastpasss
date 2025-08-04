@@ -12,10 +12,10 @@ interface SmartImageProps extends Omit<NextImageProps, 'onLoad' | 'onError'> {
 }
 
 export function SmartImage({
- fallbackSrc = '/imageFallback.jpg',
- borderRadius = '0px',
- containerProps,
- ...props
+  fallbackSrc = '/imageFallback.jpg',
+  borderRadius = '0px',
+  containerProps,
+  ...props
 }: SmartImageProps) {
   const [isLoading, setIsLoading] = useState(true)
   const [hasError, setHasError] = useState(false)
@@ -32,11 +32,7 @@ export function SmartImage({
       {...containerProps}
     >
       {isLoading && (
-        <Center
-          position="absolute"
-          inset={0}
-          zIndex={1}
-        >
+        <Center position="absolute" inset={0} zIndex={1}>
           <Spinner
             w="30px"
             h="30px"
@@ -61,7 +57,7 @@ export function SmartImage({
           objectFit: 'cover',
           opacity: isLoading ? 0 : 1,
           transition: 'opacity 0.3s ease-in-out',
-          ...props.style,
+          ...props.style
         }}
       />
     </Box>

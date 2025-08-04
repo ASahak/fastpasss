@@ -1,8 +1,9 @@
-import { AddressType } from '@/common/types/global';
+import { AddressType } from '@/common/types/global'
 
 export const QUERY_KEYS_FACTORY = {
   FETCH_EVENTS: (filterBy: string) => ['fetch-events', filterBy],
-  FETCH_EVENT: (eventAddress: AddressType) => ['fetch-event', eventAddress]
+  FETCH_EVENT: (eventAddress: AddressType) => ['fetch-event', eventAddress],
+  FETCH_TICKETS: (userAddress: AddressType) => ['fetch-tickets', userAddress]
 }
 
 export const WHITE_LIST_OF_RESET_QUERY = []

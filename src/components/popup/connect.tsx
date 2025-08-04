@@ -13,7 +13,7 @@ import {
   isMetaMaskAvailable,
   isYoWalletConnector
 } from '@/utils/helpers/connect'
-import { METAMASK_ERRORS } from '@/common/constants/errors';
+import { METAMASK_ERRORS } from '@/common/constants/errors'
 
 const Connect = () => {
   const { connectWithEVMWallet } = useWalletConnect()
@@ -59,11 +59,7 @@ const Connect = () => {
   }
 
   return (
-    <VStack
-      spacing="1.6rem"
-      mt={4}
-      w={{ base: '25rem', md: '35.2rem' }}
-    >
+    <VStack spacing="1.6rem" mt={4} w={{ base: '25rem', md: '35.2rem' }}>
       {getAvailableConnectors(wallets).map((wallet) => (
         <Button
           key={wallet.id}

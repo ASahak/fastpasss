@@ -4,13 +4,20 @@ import React, { type ReactNode } from 'react'
 
 import {
   ChakraProvider as _ChakraProvider,
-  cookieStorageManagerSSR, UseToastOptions,
+  cookieStorageManagerSSR,
+  UseToastOptions
 } from '@chakra-ui/react'
 
 import theme from '@/styles/theme'
-import { Toast } from '@/components/ui';
+import { Toast } from '@/components/ui'
 
-export const ChakraProvider = ({ children, cookieStore }: { children: ReactNode, cookieStore: string }) => {
+export const ChakraProvider = ({
+  children,
+  cookieStore
+}: {
+  children: ReactNode
+  cookieStore: string
+}) => {
   const colorModeManager = cookieStorageManagerSSR(cookieStore)
 
   return (

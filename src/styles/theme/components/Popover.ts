@@ -15,9 +15,9 @@ export default defineStyleConfig({
         display: 'flex',
         flexDirection: 'column',
         touchAction: 'none',
-        width: '100%',
+        width: '100%'
       }
-    },
+    }
   },
   defaultProps: {}
 })

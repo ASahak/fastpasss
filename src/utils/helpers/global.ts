@@ -1,14 +1,14 @@
 import BigNumber from 'bignumber.js'
-import { isMobile, isSafari } from 'react-device-detect';
-import { METAMASK_DOWNLOAD_URL } from '@/common/constants/global';
-import { METAMASK_ERRORS } from '@/common/constants/errors';
+import { isMobile, isSafari } from 'react-device-detect'
+import { METAMASK_DOWNLOAD_URL } from '@/common/constants/global'
+import { METAMASK_ERRORS } from '@/common/constants/errors'
 import { toBig } from '@/utils/helpers/bignumber'
-import { formatUnits, parseUnits } from 'viem';
+import { formatUnits, parseUnits } from 'viem'
 
-export const isClient = typeof window !== 'undefined';
+export const isClient = typeof window !== 'undefined'
 
 export const getDAppUrl = () => {
-  if (!isClient) return '';
+  if (!isClient) return ''
 
   const { host, pathname, search } = window.location
   const pageUrlWithoutProtocol = encodeURI(host + pathname + search)
@@ -119,9 +119,12 @@ export function parseUnitValue(
 }
 
 export function formatUnitValue(
-  value: string | number | bigint,
+  value: string | number | bigint | undefined | null,
   decimal: number | bigint | string = 9
 ): string {
+  if (!value && value !== 0) {
+    return '0'
+  }
   try {
     if (typeof value !== 'bigint' && isNaN(Number(value))) {
       throw new Error(`Not a number: ${value}`)
@@ -130,6 +133,6 @@ export function formatUnitValue(
     return formatUnits(BigInt(value!), Number(decimal) || 9)
   } catch (err) {
     console.error(err)
-    return ''
+    return '0'
   }
 }

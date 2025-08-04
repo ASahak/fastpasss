@@ -5,7 +5,7 @@ BigNumber.config({
   DECIMAL_PLACES: 30
 })
 
-if(typeof window !== 'undefined') {
+if (typeof window !== 'undefined') {
   ;(window as any).BigNumber = BigNumber
 }
 

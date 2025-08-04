@@ -1,22 +1,22 @@
-'use client';
+'use client'
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAccount } from 'wagmi';
-import { ROUTES } from '@/common/constants/routes';
-import { Spinner, Center } from '@chakra-ui/react';
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+import { useAccount } from 'wagmi'
+import { ROUTES } from '@/common/constants/routes'
+import { Spinner, Center } from '@chakra-ui/react'
 
 const AuthGuard = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
-  const { address, isConnecting, isReconnecting, status } = useAccount();
+  const router = useRouter()
+  const { address, isConnecting, isReconnecting, status } = useAccount()
 
-  const isLoading = status === 'connecting' || isReconnecting || isConnecting;
+  const isLoading = status === 'connecting' || isReconnecting || isConnecting
 
   useEffect(() => {
     if (!isLoading && !address) {
-      router.replace(ROUTES.EVENTS);
+      router.replace(ROUTES.EVENTS)
     }
-  }, [address, isLoading, router]);
+  }, [address, isLoading, router])
 
   if (isLoading || !address) {
     return (
@@ -28,10 +28,10 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
           color="var(--chakra-colors-blue-300)"
         />
       </Center>
-    );
+    )
   }
 
-  return <>{children}</>;
-};
+  return <>{children}</>
+}
 
-export default AuthGuard;
+export default AuthGuard

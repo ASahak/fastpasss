@@ -2,7 +2,7 @@ import { isMobile, isMobileSafari, isSafari } from 'react-device-detect'
 
 import { ConnectorsWithTypes } from '@/common/constants/connect'
 import { IConnector } from '@/common/types/connect'
-import { isClient } from '@/utils/helpers/global';
+import { isClient } from '@/utils/helpers/global'
 
 export const isWalletConnectConnector = (connectorId?: string) =>
   ConnectorsWithTypes.WALLET_CONNECT.indexOf(
@@ -21,15 +21,20 @@ export const isOneKeyConnector = (connectorId?: string) =>
 export const isYoWalletConnector = (connectorId?: string) =>
   ConnectorsWithTypes.YO_WALLET.indexOf(connectorId as ConnectorsWithTypes) > -1
 
-export const isMetaMaskAvailable = () => isClient && !!window?.ethereum?.isMetaMask
+export const isMetaMaskAvailable = () =>
+  isClient && !!window?.ethereum?.isMetaMask
 
-export const isOneKeyAvailable = () => isClient &&
-  Object.hasOwn(window.ethereum || {}, 'isOneKey')
+export const isOneKeyAvailable = () =>
+  isClient && Object.hasOwn(window.ethereum || {}, 'isOneKey')
 
-export const isYoWalletBrowser: boolean = isClient &&
-  isMobile && isMetaMaskAvailable() && Object.hasOwn(window, 'isYoWallet')
+export const isYoWalletBrowser: boolean =
+  isClient &&
+  isMobile &&
+  isMetaMaskAvailable() &&
+  Object.hasOwn(window, 'isYoWallet')
 
-export const isOneKeyWalletBrowser: boolean = isClient && isMobile && isOneKeyAvailable()
+export const isOneKeyWalletBrowser: boolean =
+  isClient && isMobile && isOneKeyAvailable()
 
 export function getAvailableConnectors(wallets: IConnector[]): IConnector[] {
   if (!isClient) return []

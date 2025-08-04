@@ -1,12 +1,12 @@
-import { memo, useRef } from 'react';
-import { Button, Flex, Icon, Input } from '@chakra-ui/react';
-import { HiOutlineSearch } from "react-icons/hi";
+import { memo, useRef } from 'react'
+import { Button, Flex, Icon, Input } from '@chakra-ui/react'
+import { HiOutlineSearch } from 'react-icons/hi'
 
 const BaseSearch = () => {
-  const fieldRef = useRef<HTMLInputElement>(null);
+  const fieldRef = useRef<HTMLInputElement>(null)
 
   const onFocusField = () => {
-    fieldRef.current?.focus();
+    fieldRef.current?.focus()
   }
 
   return (
@@ -20,8 +20,18 @@ const BaseSearch = () => {
         inset={0}
         my="auto"
         ml="1.6rem"
-        as={HiOutlineSearch}/>
-      <Input type="text" ref={fieldRef} placeholder="Search Event" size="lg" variant="base" w="full" pl="4.4rem" pr="5rem"/>
+        as={HiOutlineSearch}
+      />
+      <Input
+        type="text"
+        ref={fieldRef}
+        placeholder="Search Event"
+        size="lg"
+        variant="base"
+        w="full"
+        pl="4.4rem"
+        pr="5rem"
+      />
       <Button
         bgColor="gray.500"
         w="3.6rem"
@@ -36,7 +46,7 @@ const BaseSearch = () => {
         my="auto"
         mx=".6rem"
       >
-        <Icon as={HiOutlineSearch} color="white"/>
+        <Icon as={HiOutlineSearch} color="white" />
       </Button>
     </Flex>
   )
